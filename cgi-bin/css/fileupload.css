@@ -1,0 +1,151 @@
+input[type=text],input[type=password],input[type=date]{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+input[type=number]{
+    width: 200px;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+.select_box{
+    width: 1000px;
+    padding: 20px;
+    margin: 0 auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border: 1px black solid;
+    background: #ddd;
+}
+/*.btn {
+      background: #3498db;
+      background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
+      background-image: -moz-linear-gradient(top, #3498db, #2980b9);
+      background-image: -ms-linear-gradient(top, #3498db, #2980b9);
+      background-image: -o-linear-gradient(top, #3498db, #2980b9);
+      background-image: linear-gradient(to bottom, #3498db, #2980b9);
+      font-family: Arial;
+      color: #ffffff;
+      font-size: 20px;
+      padding: 10px 20px 10px 20px;
+      text-decoration: none;
+    }
+
+    .btn:hover {
+      background: #3cb0fd;
+      background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+      background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+      background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+      background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+      background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+      text-decoration: none;
+    }
+    .btn:focus {
+        background: #3cb0fd;
+    }*/
+    select{
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    input[type=submit] {
+        width: 150px;
+        background-color: #003366;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: 1px black solid;
+        cursor: pointer;
+    }
+
+    input[type=submit]:hover {
+        background-color: #000;
+    }
+    
+    .login_form{
+        margin: 0 auto;
+        margin-top: 100px;
+        width: 300px;
+        padding: 20px;
+        border: 1px black solid;				
+    }
+    
+    .footer{
+        margin-top: 100px;
+    }
+    .works{
+        margin: 0 auto;
+        width: 1045px;
+    }
+
+    table {
+        border-collapse: collapse;
+        border:1px black solid;
+        width: 100%;
+        font-size: 12px;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 6px;
+        border:1px black solid;
+    }
+
+    th {
+        background-color: #003366;
+        color: white;
+    }
+
+    #dialog {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.4);
+      }
+      
+      .dialog-content {
+        background-color: white;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 90%;
+        max-width: 500px;
+        position: relative;
+      }
+      
+      .close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 28px;
+        font-weight: bold;
+        color: #aaa;
+        cursor: pointer;
+      }
+
+      /* SweetAlert2 styling */
+    .swal2-popup {
+        font-size: 1.1rem !important;
+    }
+    .swal2-title {
+        font-weight: bold;
+        font-size: 1.2rem;
+    }

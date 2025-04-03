@@ -1,0 +1,651 @@
+body{
+
+
+	margin: 0px;
+
+
+	padding: 0px;
+
+
+	font-family: Tahoma, Arial;
+
+
+	background-image: url('../img/crossword.png');
+
+
+}
+
+
+/*-----------------------dropdown*/
+
+
+.avtor1, .avtor2, .avtor3, .avtor4, .avtor5, .avtor6, .avtor7{
+
+
+    border: 1px solid #f1f1f1;
+
+
+    background-color: #dddfdd;
+
+
+    margin: 2px 0px;
+
+
+    padding: 40px;
+
+
+    border-radius: 4px;
+
+
+}
+
+
+
+
+
+#country-list {
+
+
+    float: left;
+
+
+    list-style: none;
+
+
+    margin-top: -3px;
+
+
+    padding: 0;
+
+
+    width: 190px;
+
+
+    position: absolute;
+
+
+}
+
+
+
+
+
+#country-list li {
+
+
+    padding: 10px;
+
+
+    background: #f0f0f0;
+
+
+    border-bottom: #bbb9b9 1px solid;
+
+
+}
+
+
+
+
+
+#country-list li:hover {
+
+
+    background: #ece3d2;
+
+
+    cursor: pointer;
+
+
+}
+
+
+
+
+
+#avtor_bir, #avtor_eki, #avtor_ush, #avtor_tort, #avtor_bes, #avtor_alty, #avtor_jeti  {
+
+
+    padding: 10px;
+
+
+    border: #a8d4b1 1px solid;
+
+
+    border-radius: 4px;
+
+
+}
+
+
+/*------------------------------------------------------------header*/
+
+
+.upper_header{
+
+
+	padding: 10px;
+
+
+	margin: 0 auto;
+
+
+	width: 900px;
+
+
+}
+
+
+.header{
+
+
+	width: 100%;
+
+
+	height: 54px;
+
+
+	background: #003366;
+
+
+	margin-top: 25px;
+
+
+}
+
+
+.content{
+
+
+	width: 100%;
+
+
+}
+
+
+
+
+
+.footer{
+
+
+	clear:left;
+
+
+}
+
+
+
+
+
+/*    Drop menu parameters-------------------------------------------*/
+
+
+
+
+
+#menu_nav
+
+
+{
+
+
+	background:#003366;
+
+
+	width: 940px;
+
+
+	height: 54px;
+
+
+	margin: 0 auto;
+
+
+}
+
+
+
+
+
+#primary_nav_wrap
+
+
+{
+
+
+	background:#003366;
+
+
+}
+
+
+
+
+
+#primary_nav_wrap ul
+
+
+{
+
+
+	list-style:none;
+
+
+	position:relative;
+
+
+	float:left;
+
+
+	margin:0;
+
+
+	padding:0
+
+
+}
+
+
+
+
+
+#primary_nav_wrap ul a
+
+
+{
+
+
+	display:block;
+
+
+	color:white;
+
+
+	text-decoration:none;
+
+
+	font-size:16px;
+
+
+	line-height:32px;
+
+
+	padding: 11px;
+
+
+	padding-left: 20px;
+
+
+	padding-right: 20px;
+
+
+}
+
+
+
+
+
+#primary_nav_wrap ul li
+
+
+{
+
+
+	position:relative;
+
+
+	float:left;
+
+
+	margin:0;
+
+
+	padding:0;
+
+
+}
+
+
+
+
+
+#primary_nav_wrap ul li.current-menu-item
+
+
+{
+
+
+	background:#003366;
+
+
+}
+
+
+
+
+
+#primary_nav_wrap ul li:hover
+
+
+{
+
+
+	background:#0099cc;
+
+
+}
+
+
+
+
+
+#primary_nav_wrap ul li ul li:hover
+
+
+{
+
+	background:#000;
+
+
+}
+
+
+
+
+
+#primary_nav_wrap ul ul
+
+
+{
+
+
+	z-index: 2;
+
+
+	display:none;
+
+
+	position:absolute;
+
+
+	top:100%;
+
+
+	left:0;
+
+
+	background:#0099cc;
+
+
+	padding:0;
+
+
+}
+
+
+
+
+
+#primary_nav_wrap ul ul li
+
+
+{
+
+
+	float:none;
+
+
+	width:250px
+
+
+}
+
+
+
+
+
+#primary_nav_wrap ul ul a
+
+
+{
+
+
+	line-height:120%;
+
+
+	padding:20px;
+
+
+}
+
+
+
+
+
+#primary_nav_wrap ul ul ul
+
+
+{
+
+
+	top:0;
+
+
+	left:100%
+
+
+}
+
+
+
+
+
+#primary_nav_wrap ul li:hover > ul
+
+
+{
+
+
+	display:block
+
+
+}
+
+
+
+
+
+/* Tabs Demo 1 */
+
+
+.tabs input[type=radio] {
+
+
+    position: absolute;
+
+
+    top: -9999px;
+
+
+    left: -9999px;
+
+
+}
+
+
+.tabs {
+
+
+	z-index:1;
+
+
+  width: 650px;
+
+
+  float: none;
+
+
+  list-style: none;
+
+
+  position: relative;
+
+
+  padding: 0;
+
+
+  margin: 75px auto;
+
+
+}
+
+
+.tabs li{
+
+
+  float: left;
+
+
+}
+
+
+.tabs label {
+
+
+    display: block;
+
+
+    padding: 10px 20px;
+
+
+    border-radius: 2px 2px 0 0;
+
+
+    color: #08C;
+
+
+    font-size: 24px;
+
+
+    font-weight: normal;
+
+
+    background: rgba(255,255,255,0.2);
+
+
+    cursor: pointer;
+
+
+    position: relative;
+
+
+    top: 3px;
+
+
+    -webkit-transition: all 0.2s ease-in-out;
+
+
+    -moz-transition: all 0.2s ease-in-out;
+
+
+    -o-transition: all 0.2s ease-in-out;
+
+
+    transition: all 0.2s ease-in-out;
+
+
+}
+
+
+.tabs label:hover {
+
+
+  background: rgba(255,255,255,0.5);
+
+
+  top: 0;
+
+
+}
+
+
+
+
+
+[id^=tab]:checked + label {
+
+
+  background: #08C;
+
+
+  top: 0;
+
+
+}
+
+
+
+
+
+[id^=tab]:checked ~ [id^=tab-content] {
+
+
+    display: block;
+
+
+}
+
+
+.tab-content{
+
+
+  z-index: 2;
+
+
+  display: none;
+
+
+  text-align: left;
+
+
+  width: 100%;
+
+
+  font-size: 20px;
+
+
+  line-height: 140%;
+
+
+  padding-top: 10px;
+
+
+  padding: 15px;
+
+
+  position: absolute;
+
+
+  top: 53px;
+
+
+  left: 0;
+
+
+  box-sizing: border-box;
+
+
+  -webkit-animation-duration: 0.5s;
+
+
+  -o-animation-duration: 0.5s;
+
+
+  -moz-animation-duration: 0.5s;
+
+
+  animation-duration: 0.5s;
+
+
+}
