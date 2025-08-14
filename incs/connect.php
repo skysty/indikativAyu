@@ -13,9 +13,9 @@
     require_once dirname(__DIR__).'/locale/MyLocale.php';
     $oL = new MyLocale();
     $db_host = "localhost";
-	$db_user = "erbolat_root";
-	$db_pass = "H0_fU7_NU3_Nww_N";
-	$db = "erbolat_ip2025";
+	$db_user = "root";
+	$db_pass = "";
+	$db = "indikativAyu";
 
 	$connection = mysqli_connect($db_host, $db_user, $db_pass);
     if (mysqli_connect_errno()) {

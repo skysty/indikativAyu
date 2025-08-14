@@ -28,8 +28,8 @@
 
 			$ere = '';
 			if($_SESSION['lang']=='kaz')
-		$ere = '../files/erezhe2023.pdf';
-		else $ere = '../files/erezhe2023.pdf';
+		$ere = '../files/ereje.pdf';
+		else $ere = '../files/Reyting.pdf';
 
 ?>    
     
@@ -55,18 +55,19 @@
 				    <li><a href="<?=$sHome?>/korsetkishter.php"><?= $oL::get('Көрсеткіштер')?></a></li>
 				    <li><a href="#"><?= $oL::get('Құжаттар')?></a>
 				    <ul>                             
-					    <li><a target = "_blank" href = "<?php echo $ere;?>"><?= $oL::get('Ереже 2023-2024')?></a></li>
-                        <li><a target = "_blank" href = "../files/gylym24.pdf"><?= $oL::get('Растаушылар - Ғылыми бағыт')?></a></li>
+					    <li><a target = "_blank" href = "<?php echo $ere;?>"><?= $oL::get('Ереже 2024-2025')?></a></li>
+						<li><a target = "_blank" href = "../files/okim.pdf"><?= $oL::get('Растаушылар - Халықаралық байланыс')?></a></li>
+                        <!-- <li><a target = "_blank" href = "../files/gylym24.pdf"><?= $oL::get('Растаушылар - Ғылыми бағыт')?></a></li>
                         <li><a target = "_blank" href = "../files/akadem24.pdf"><?= $oL::get('Растаушылар - Академиялық бағыт')?></a></li>
                         <li><a target = "_blank" href = "../files/tarbie24.pdf"><?= $oL::get('Әлеуметтік-мәдени бағыт - Растаушылар')?></a></li>
-                        <li><a target = "_blank" href = "../files/okim24.pdf"><?= $oL::get('Растаушылар - Халықаралық байланыс')?></a></li>
-						<li><a target = "_blank" href = "../files/hattama_2024.pdf"><?= $oL::get('Хаттама №1 2024')?></a></li>
+						<li><a target = "_blank" href = "../files/hattama_2024.pdf"><?= $oL::get('Хаттама №1 2024')?></a></li> -->
 					</ul>
 			</li>  
                    <li>
 								<a href="#"><?= $oL::get('Архив')?></a>
                             <ul>
 								<!--<li><a target = "_blank" href = "../files/senat22.pdf"><?= $oL::get('Хаттама Сенатқа -  Рейтинг комиссия 2022')?></a></li>-->
+								<li><a href="https://ip24.ayu.edu.kz">2023-2024 <?= $oL::get('оқу жылы')?></a></li>
 								<li><a href="https://indikativ2023.ayu.edu.kz">2022-2023 <?= $oL::get('оқу жылы')?></a></li>
 								<li><a href="http://ip2022.ayu.edu.kz">2021-2022 <?= $oL::get('оқу жылы')?></a></li>
 								<li><a href="http://ip3.ayu.edu.kz">2020-2021 <?= $oL::get('оқу жылы')?></a></li>
@@ -83,7 +84,7 @@
 					echo '<li><a href='.$sHome.'/engbek_jukteu.php>'.$oL::get('ОПҚ/ҒҚ').'</a></li>';
 					echo '<li><a href='.$sHome.'/engbek_apel.php>'.$oL::get('ОПҚ/ҒҚ апелляция').'</a></li>';
 				  }
-				  if(in_array($roleID,["4", "2", "6"])){
+				  if(in_array($roleID,["4", "2", "6","3"])){
 					echo '<li><a href='.$sHome.'/engbek_jukteu_cafedra.php>'.$oL::get('Каф./ҒЗИ орт. ендіру').'</a></li>';
 				  }
 				  if(in_array($roleID, ["5", "2", "6"])){
@@ -120,7 +121,7 @@
 				</ul>
 			  </li>
             <?php 
-				if (in_array($_SESSION['roleID'], [2,3])) {
+				if (in_array($_SESSION['roleID'], [2,3,7])) {
 					echo '<li><a href=\'../locale/index.php\'>' . $oL::get('Сөздік') . '</a></li>';
 				 } 	
 		 	?>			  

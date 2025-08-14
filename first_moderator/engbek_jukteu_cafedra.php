@@ -345,7 +345,7 @@
 						INNER JOIN korsetkishter ON korsetkishter.kod_korsetkish = engbekter.kod_korset
 						INNER JOIN faculties ON faculties.FacultyID = engbekter.kod_fakul 
 						INNER JOIN status ON status.statusID = engbekter.kod_stat 
-						WHERE mail = '$tutor_id' and  engbekter.del=0 ORDER BY engbekter.engbekID DESC";
+						WHERE mail = '$tutor_id' and univ_avtor_san is null and  engbekter.del=0 ORDER BY engbekter.engbekID DESC";
 						
 						$result = mysqli_query($connection,$sql) or die(mysqli_error($connection));
 												

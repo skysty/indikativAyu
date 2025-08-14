@@ -25,25 +25,6 @@
 			<div class = "content_wrapper" style = "margin-top: 5px;">
 				<div class = "inner_conten" style = "width: 1000px; margin: 0 auto;">
 					<h2 style = "text-align: center;"><?= $oL::get('Орындалған жұмыстар')?></h2>
-					<div id="dialog">
-						<div class="dialog-content">
-							<span class="close" onclick="closeDialog()">&times;</span>
-							<p style="color:red"><?= $oL::get('Ескерту:2.1 - 2.1.6 аралығындағы көрсеткіштерге еңбек салу ересжесі өзгерді')?></p>
-							<p style="color:red"><?= $oL::get('Авторлар санын жазасыз')?></p>
-							<p style="color:red"><?= $oL::get('Ескерту сипаттамасына авторлардың аттарын жазып шығасыз бас автордан төмен қарай')?></p>
-							<p style="color:red"><?= $oL::get('Мысалы: Егер автор 4 еу болса 1)Жүнісбек Сәкен Болатұлы 2)Анеш Болат Мүсирбекович 3)Сейсен Марат Исабекулы 4)Утебаев Баймурат')?></p>
-							<p><?= $oL::get('Әлемдік рейтингтік ғылыми индекстегі  жарияланымдар')?> <?= $oL::get('Ахмет Ясауи университеті атауы көрсетілген жағдайда, қосалқы авторлық тек өз ғылыми және пәнаралық бағыты бойынша,')?> <?= $oL::get('Journal Citation Reports (Clarivate Analytics) үшін квартиль және CiteScore (Scopus) индикаторы және барлық ғылыми мақалалар мен монографиялар үшін ұпайларды есептеу кезінде жарияланымның ішкі авторлар санына қарай ұпай төмендегіше бөлінеді')?>:</p>
-							<ul>
-								<li><?= $oL::get('1 автор – 100 % ;')?></li>
-								<li><?= $oL::get('2 автор, 1-ші авторға 60% болса, екінші авторға 40 % беріледі;')?></li>
-								<li><?= $oL::get('3 автор, 1-ші авторға 40%, қалған екі авторға 30-% теңдей бөлінеді;')?></li>
-								<li><?= $oL::get('4 автор, 1-ші авторға 40%, қалған 3 авторға 20 % теңдей бөлінеді;')?></li>
-								<li><?= $oL::get('5 автор, 1-ші авторға 40%, қалған 4 авторға 15 %-дан теңдей бөлінеді;')?></li>
-								<li><?= $oL::get('6 автор, 1-ші авторға 25 %, қалған 5 авторға 15 %-дан теңдей бөлінеді,')?></li>
-								<li><?= $oL::get('7 авторлар, 1-ші авторға 20 %, қалған авторларға 80 % үлес бөлінеді.')?></li>
-							</ul>
-						</div>
-					</div>
 					<?php
 						$_SESSION['tutor'];
 						$query = mysqli_query($connection,"SELECT cafedras.cafedraID, cafedras.FacultyID, tutors.TutorID
@@ -84,7 +65,7 @@
 							<textarea rows="8" cols="109" name = "tolyk_korset" id = "tolyk_korset" style = "font-size: 18px; font-family: Tahoma; margin-top: 8px; border-radius:4px;"></textarea><br /><br />
                             <?= $oL::get('Орындалған күні')?>
 							<input type = "date" name = "date" required/><br /><br />
-                            <?= $oL::get('ХҚТУ авторлар саны (Өзіңізді қоса санағанда)')?><span style="color:red" id="hideText"><?= $oL::get('Макс 7 автор')?></span><br/>
+                            <?= $oL::get('Авторлардың жалпы санына қарай бөлінеді(автордың ішкі немесе сыртқы екеніне қарамастан)')?><span style="color:red" id="hideText"><?= $oL::get('Макс 7 автор')?></span><br/>
 							<input type = "number" id = "univ_avtor_san" name = "univ_avtor_san" value = "1" min="1"/>
 							<br /><br />
 							<div id="hidingElem">
@@ -116,8 +97,8 @@
 							<input type = "hidden" name = "cafedra" value = "<?php echo $tutor['cafedraID'];?>"/>
 							<input type = "hidden" name = "faculty" value = "<?php echo $tutor['FacultyID'];?>"/>
 							<input type = "hidden" name = "save_date" value = "<?php date_default_timezone_set("Asia/Dhaka"); echo date("d/m/Y H:i:s");?>"/>						
-								<br><?= $oL::get('Деректер қоры жабылды!')?> 20.05.2024 00:00<br/>
-							<!--<input type = "submit" name = "upload" value ="<?= $oL::get('Жүктеу')?>"/>-->
+								<?= $oL::get('Деректер қоры жабылды!')?> 21.05.2025 18:00<br/>
+							<!--<br><input type = "submit" name = "upload" value ="<?= $oL::get('Сақтау')?>-->
 
 						</form>
 					</div>
@@ -166,7 +147,8 @@
 							cafedras.cafedraNameKZ, 
 							faculties.facultyNameKZ,
 							cafedras.cafedraNameTR, 
-							faculties.facultyNameTR 
+							faculties.facultyNameTR,
+							engbekter.changed 
 							FROM engbekter 
 							INNER JOIN cafedras ON cafedras.cafedraID = engbekter.kod_kafedra 
 							INNER JOIN tutors ON tutors.TutorID = engbekter.kod_kizm
@@ -174,7 +156,7 @@
 							INNER JOIN faculties ON faculties.FacultyID = engbekter.kod_fakul 
 							INNER JOIN status ON status.statusID = engbekter.kod_stat 
 							LEFT JOIN kaytaru_sebebi ON kaytaru_sebebi.kod_kayt_sebeb =  engbekter.kod_kayt_sebeb
-							WHERE mail = '$tutor_id' and engbekter.del=0 ORDER BY engbekter.engbekID DESC";
+							WHERE mail = '$tutor_id' and engbekter.univ_avtor_san is not null and engbekter.del=0 ORDER BY engbekter.engbekID DESC";
 							
 							$result = mysqli_query($connection, $sql) or die(mysqli_error($connection));
 							
@@ -197,7 +179,7 @@
 									$sebep= isset($row['sebepterTR']) && mb_strlen($row['sebepterTR']) ? $row['sebepterTR'] : $row['sebepter'];
 									$statuss= isset($row['status_nameTR']) && mb_strlen($row['status_nameTR']) ? $row['status_nameTR'] : $row['status_name'];
 								}
-								echo "<tr> ";
+								echo "<tr class='" . ($row["changed"] == 1 ? "changed-title" : ($row["changed"] == 2 ? "changed-row" : "")) . "'>";
 								echo "<td>".$i."</td>";
 								echo "<td>".$sCafedra."</td>";
 								echo "<td>".$sLastName." ".$sFirstName."</td>";
@@ -206,7 +188,10 @@
 								echo "<td>".$row["univ_avtor_san"]."</td>";
 								echo "<td><a target='_blank' href = " .$row['file_ati'] .">".$row["file_ati"]."</a></td>";
 								echo "<td>".$row["ball"]."</td><td><b>".$sebep."</b><br>".$row["kayt_sebeb"]."</td><td>".$row["eskertu"]."</td><td>".$statuss."</td>";
-								//echo "<td><button class='btn btn-danger delete-btn' data-id=".$row['engbekID']." onClick='deleteRecord(this)'>".$oL::get('Өшіру') ."</button></td>";
+								echo "<td><button class='btn btn-danger delete-btn' data-id=".$row['engbekID']." onClick='deleteRecord(this)'>".$oL::get('Өшіру') ."</button></td>";
+								if ($row["statusID"] != 3 && $row["statusID"] == 6) {
+									echo "<td><a href='update_engbek.php?engbekID=".$row['engbekID']."'><button class='btn btn-warning'>".$oL::get('Өзгерту')."</button></a></td>";
+								}
 								echo "</tr>";
 								$i++;
 							}

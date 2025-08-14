@@ -1,6 +1,7 @@
 <html>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <head>
+<?php include '../extensions/head_enbek.php'; ?>
 	<?php
 		session_start();
 		$_SESSION['tutor'];
@@ -146,21 +147,21 @@
 					FROM cafedras
 					INNER JOIN faculties ON faculties.FacultyID = cafedras.FacultyID
 					INNER JOIN tutors ON tutors.CafedraID = cafedras.cafedraID
-					WHERE Login = '$tutor_id'") or die(mysqli_error());
+					WHERE mail = '$tutor_id'") or die(mysqli_error($connection));
 					$tutor = mysqli_fetch_array($query);
-					$query = mysqli_query($connection,"SELECT tutors.typeCafANDFac FROM tutors WHERE  Login = '$_SESSION[tutor]'") or die(mysqli_error($connection));
+					$query = mysqli_query($connection,"SELECT tutors.typeID FROM tutors WHERE  mail = '$_SESSION[tutor]'") or die(mysqli_error($connection));
 					$tutor1 = mysqli_fetch_array($query);
-					$tt=$tutor1['typeCafANDFac'];
+					$tt=$tutor1['typeID'];
 					function load_korsetkish(){
-                       				global  $tt;
+                       	global  $tt;
 						global $connection;
 						$output = '';
-						$sql = "SELECT * FROM korsetkishter WHERE bolimderID IN(3,5,6,7) and tutcafandfac='$tt'";
+						$sql = "SELECT * FROM korsetkishter WHERE bolimderID IN(3,5,6,7) and typeID='$tt'";
 						$result = mysqli_query($connection,$sql) or die(mysqli_error($connection));
 						
 						while($row = mysqli_fetch_array($result)){			
 							$kors = '';
-							if($_SESSION['lang'] == 'rus')
+							if($_SESSION['lang'] == 'tr')
 								$kors = $row['korsetkish_ati2'];
 							else
 								$kors = $row['korsetkish_ati'];
@@ -177,8 +178,8 @@
 						
 						while($row = mysqli_fetch_array($result)){
                                                         $facul='';
-							if($_SESSION['lang'] == 'rus'){
-							    $facul=$row['facultyNameRU'];	
+							if($_SESSION['lang'] == 'tr'){
+							    $facul=$row['facultyNameTR'];	
 							}else{
 							    $facul=$row['facultyNameKZ'];	
 							}	
@@ -191,17 +192,17 @@
 							$(document).ready(function(){
 								
 								$("#faculty1").change(function(){
-													var FacultyID = $(this).val();
-													$.ajax({
-														url:"get_cafedra.php",
-														method:"POST",
-														data:{FacultyID:FacultyID},
-														dataType:"text",
-														success:function(data){
-															$("#cafedra").html(data);
-														}
-													});
-												});
+									var FacultyID = $(this).val();
+									$.ajax({
+										url:"get_cafedra.php",
+										method:"POST",
+										data:{FacultyID:FacultyID},
+										dataType:"text",
+										success:function(data){
+											$("#cafedra").html(data);
+										}
+									});
+								});
 							
 								$("#korsetkish").change(function(){
 									var kod_korsetkish = $("#korsetkish option:selected").text();
@@ -270,7 +271,7 @@
 						<textarea rows="8" cols="109" name = "eskertu" style = "font-size: 18px; font-family: Tahoma; margin-top: 8px; border-radius:4px;"></textarea><br/><br/><hr />
 						<span><?=$oL::get('Растаушы файлды таңдау (PDF, JPG форматындағы файлдар)(Файл лимит 10мб аспау керек)')?></span><br/><br/>
 						<input type = "file" name="file" accept="application/pdf, image/*" /><br /><br /><hr />
-						<input type = "hidden" name = "tutor_id" value = "<?php echo $tutor['TutorID'];?>"/>
+						<input type = "hidden" name = "tutor_id" value = "<?php echo $tut['TutorID'];?>"/>
 						<input type = "hidden" name = "save_date" value = "<?php date_default_timezone_set("Asia/Dhaka"); echo date("d/m/Y H:i:s");?>"/>						
 						<!--<br>Деректер қоры жабылды! 01.06.2020 00:00<br/>-->
                                                 <input type = "submit" name = "upload" value = "<?=$oL::get('Жүктеу')?>"/>
@@ -322,8 +323,8 @@
 							tutors.firstname, 
 							tutors.lastname, 
 							tutors.patronymic,
-							tutors.firstnameRu, tutors.lastnameRu, 
-							tutors.patronymicRu, 
+							tutors.firstnameTR, tutors.lastnameTR, 
+							tutors.patronymicTR, 
 							korsetkishter.korsetkish_ati,
 							korsetkishter.korsetkish_ati2, 	
 							engbekter.sani, 
@@ -336,15 +337,15 @@
 							status.statusID, 
 							cafedras.cafedraNameKZ, 
 							faculties.facultyNameKZ,
-							cafedras.cafedraNameRU, 
-							faculties.facultyNameRU  
+							cafedras.cafedraNameTR, 
+							faculties.facultyNameTR  
 						FROM engbekter 
 						INNER JOIN cafedras ON cafedras.cafedraID = engbekter.kod_kafedra 
 						INNER JOIN tutors ON tutors.TutorID = engbekter.kod_kizm
 						INNER JOIN korsetkishter ON korsetkishter.kod_korsetkish = engbekter.kod_korset
 						INNER JOIN faculties ON faculties.FacultyID = engbekter.kod_fakul 
 						INNER JOIN status ON status.statusID = engbekter.kod_stat 
-						WHERE Login = '$tutor_id' ORDER BY engbekter.engbekID DESC";
+						WHERE mail = '$tutor_id' and univ_avtor_san is null and  engbekter.del=0 ORDER BY engbekter.engbekID DESC";
 						
 						$result = mysqli_query($connection,$sql) or die(mysqli_error($connection));
 												
@@ -358,11 +359,11 @@
                                 $sCafedra = $row['cafedraNameKZ'];
                                 $korsetkih=$row['korsetkish_ati'];
                                 if ($_SESSION['lang'] != 'kaz'){
-                                    $sLastName = isset($row['lastnameRu']) && mb_strlen($row['lastnameRu']) ? $row['lastnameRu'] : $row['lastname'];
-                                    $sFirstName = isset($row['firstnameRu']) && mb_strlen($row['firstnameRu']) ? $row['firstnameRu'] : $row['firstname'];
-                                    $sPatronymic = isset($row['patronymicRu']) && mb_strlen($row['patronymicRu']) ? $row['patronymicRu'] : $row['patronymic'];
-//                                  $sFacult = isset($row['facultyNameRU']) && mb_strlen($row['facultyNameRU']) ? $row['facultyNameRU'] : $row['facultyNameKZ'];
-                                    $sCafedra = isset($row['cafedraNameRU']) && mb_strlen($row['cafedraNameRU']) ? $row['cafedraNameRU'] : $row['cafedraNameKZ'];
+                                    $sLastName = isset($row['lastnameTR']) && mb_strlen($row['lastnameTR']) ? $row['lastnameTR'] : $row['lastname'];
+                                    $sFirstName = isset($row['firstnameTR']) && mb_strlen($row['firstnameTR']) ? $row['firstnameTR'] : $row['firstname'];
+                                    $sPatronymic = isset($row['patronymicTR']) && mb_strlen($row['patronymicTR']) ? $row['patronymicTR'] : $row['patronymic'];
+//                                  $sFacult = isset($row['facultyNameTR']) && mb_strlen($row['facultyNameTR']) ? $row['facultyNameTR'] : $row['facultyNameKZ'];
+                                    $sCafedra = isset($row['cafedraNameTR']) && mb_strlen($row['cafedraNameTR']) ? $row['cafedraNameTR'] : $row['cafedraNameKZ'];
                                     $korsetkih= isset($row['korsetkish_ati2']) && mb_strlen($row['korsetkish_ati2']) ? $row['korsetkish_ati2'] : $row['korsetkish_ati'];
                                 }
 
@@ -375,7 +376,7 @@
 								echo "<td>".$row["univ_avtor_san"]."</td>";
 								echo "<td><a target='_blank' href = " .$row['file_ati'] .">".$row["file_ati"]."</a></td>";
 								echo "<td>".$row["ball"]."</td><td>".$row["kayt_sebeb"]."</td><td>".$oL::get($row["status_name"])."</td>";
-								echo "<td><button class='btn btn-danger delete-btn' data-id=".$row['engbekID']." onClick='deleteRecord(this)'>".$oL::get('Өшіру') ."</button></td>";
+								echo "<td><button class='btn btn-danger delete-btn' data-opk=".$row['engbekID']." onClick='deleteOpk(this)'>".$oL::get('Өшіру') ."</button></td>";
 								echo "</tr>";
 								$i++;
 							}
@@ -390,5 +391,6 @@
 	</div>
 	<div class = "footer">
 	</div>
+	<?php include '../extensions/scripts_enbekd.php'; ?>
 </body>
 </html>

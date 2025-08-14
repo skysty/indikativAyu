@@ -312,7 +312,7 @@
 
 						<tr>
 
-							<td><span><strong><?=$oL::get('ХҚТУ университеті авторлар саны (Өзін қоса санағанда)')?>:</strong></td><td><?php echo $engbek['univ_avtor_san']; ?></span></td>
+							<td><span><strong><?=$oL::get('Авторлардың жалпы санына қарай бөлінеді(автордың ішкі немесе сыртқы екеніне қарамастан)')?>:</strong></td><td><?php echo $engbek['univ_avtor_san']; ?></span></td>
 
 						</tr>
 
@@ -338,6 +338,22 @@
 								</td>
 						</tr>
                           <tr>
+							  <?php
+								if ($showInput==29) {
+									echo '<td><span><strong>Балл санын енгізіңіз:</strong></td><td><input type="text" name="myInput1"></span></td>';
+									
+								} else {
+									echo '<input type="text" name="myInput" style="display: none;">';
+								}
+						   ?>
+						   <?php
+								if ($showInput==30) {
+									echo '<td><span><strong>Балл санын енгізіңіз:</strong></td><td><input type="text" name="myInput1"></span></td>';
+									
+								} else {
+									echo '<input type="text" name="myInput" style="display: none;">';
+								}
+						   ?>
 						  <?php
 								if ($showInput==116) {
 									echo '<td><span><strong>Көтерілген позиция санын енгізіңіз:</strong></td><td><input type="text" name="myInput"></span></td>';
@@ -347,7 +363,7 @@
 								}
 						   ?>
 						  <?php
-								if ($showInput==54) {
+								if ($showInput==57) {
 									echo '<td><span><strong>Балл қосу хирша деңгейі 4-тен жоғары болған жайғдайда:</strong></td><td><input type="text" name="myInput"></span></td>';
 									
 								} else {
@@ -355,16 +371,7 @@
 								}
 						   ?>
 						   <?php
-								if ($showInput==16) {
-									echo '<td><span><strong>Бас автор - 1 деп белгіленеді ары қарай ретімен қойылады максималды автор саны 7</strong></td><td><input type="text" name="myInputNum"></span></td>';
-									
-								}else if ($showInput==17) {
-									echo '<td><span><strong>Бас автор - 1 деп белгіленеді ары қарай ретімен қойылады максималды автор саны 7</strong></td><td><input type="text" name="myInputNum"></span></td>';
-									
-								}else if ($showInput==18) {
-									echo '<td><span><strong>Бас автор - 1 деп белгіленеді ары қарай ретімен қойылады максималды автор саны 7</strong></td><td><input type="text" name="myInputNum"></span></td>';
-									
-								}else if ($showInput==19) {
+								if ($showInput==19) {
 									echo '<td><span><strong>Бас автор - 1 деп белгіленеді ары қарай ретімен қойылады максималды автор саны 7</strong></td><td><input type="text" name="myInputNum"></span></td>';
 									
 								}else if ($showInput==20) {
@@ -398,21 +405,28 @@
 			              </tr>
 						<tr>
 
-							<td><span><strong><?=$oL::get('Статус')?>:</strong> </span></td><td><select name = "status" id = "status" />
-
-																					<?php echo load_status();?>
-
-																				</select></td>
-
+							<td><span><strong><?=$oL::get('Статус')?>:</strong> </span></td>
+							<td>
+								<select name = "status" id = "status"/>
+								  <?php echo load_status();?>
+				               </select>
+						    </td>
 						</tr>
-
+						<tr>
+						<td>
+							<?php
+							echo '<input type="checkbox" name="subscribe" value="1">'		
+							?> <strong><?=$oL::get('Тұрақты даму мақсаттарына сәйкес келеді')?><strong>
+							</td>
+						<tr>
 						<tr>
 
-							<td><span><strong><?=$oL::get('Қайтару себебі')?>:</strong></span></td><td>	<select name = "kaytaru_sebebi" id = "kaytaru_sebebi" />
-
-																							<?php echo load_sebep();?>
-
-																						</select></td>
+							<td><span><strong><?=$oL::get('Қайтару себебі')?>:</strong></span>
+						</td><td>	
+							<select name = "kaytaru_sebebi" id = "kaytaru_sebebi" />
+								<?php echo load_sebep();?>
+							</select>
+						</td>
 
 						</tr>
 
@@ -420,8 +434,7 @@
 
 							<td><p style = "vertical-align: middle;"><strong><?=$oL::get('Резолюция')?>:</strong> </p></td><td><textarea cols = 50 rows = 10 name = "resolution" id = "resolution"></textarea></td>
 
-						</tr>
-
+						</tr>    
 						<input type = "hidden" name = "engbek_id" value = "<?php echo $engbek['engbekID']; ?>" />
 
 						<input type = "hidden" name = "tutor_id" value = "<?php echo $engbek['TutorID']; ?>" />
@@ -431,7 +444,6 @@
 						<input type = "hidden" name = "univ_avtor_san" value = "<?php echo $engbek['univ_avtor_san']; ?>" />
 
 						<input type = "hidden" name = "tutor_moderator" value = "<?php echo $result['TutorID']; ?>" />
-						
 
 						<tr>
 

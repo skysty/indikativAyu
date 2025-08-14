@@ -45,7 +45,7 @@ $sql = "SELECT engbekter.engbekID,
         INNER JOIN faculties ON faculties.FacultyID = engbekter.kod_fakul 
         INNER JOIN status ON status.statusID = engbekter.kod_stat
         LEFT JOIN kaytaru_sebebi ON kaytaru_sebebi.kod_kayt_sebeb =  engbekter.kod_kayt_sebeb 
-        WHERE engbekter.del = 0 AND tutors.roleID NOT IN(2,3)";
+        WHERE engbekter.del = 0 AND tutors.roleID NOT IN(2)";
 
 // Check and add dynamic conditions
 if (!empty($_SESSION['tutor'])) {

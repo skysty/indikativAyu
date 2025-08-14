@@ -157,7 +157,7 @@
 				?>
 
 			<hr />		
-			<h1 style = "text-align: center; color: red"><?= $oL::get('Ағымдағы рейтинг 2023-2024')?></h1><hr />
+			<h1 style = "text-align: center; color: red"><?= $oL::get('Ағымдағы рейтинг 2024-2025')?></h1><hr />
 			<h2 align = 'center' style = "color: #0094de"><?= $oL::get('Факультеттер рейтингі')?></h2>
 			<div id = "chart_container">
 

@@ -152,18 +152,18 @@
 				<h2 style = "text-align: center;"><?=$oL::get('Факультеттің немесе ҒЗО-ның орындалған жұмыстары')?></h2>			
 				<?php
 					$_SESSION['tutor'];
-					$query = mysqli_query($connection,"SELECT cafedras.cafedraID, cafedras.FacultyID, tutors.TutorID
+					$query = mysqli_query($connection,"SELECT cafedras.cafedraID, tutors.typeID, cafedras.FacultyID, tutors.TutorID
 					FROM cafedras
 					INNER JOIN faculties ON faculties.FacultyID = cafedras.FacultyID
 					INNER JOIN tutors ON tutors.CafedraID = cafedras.cafedraID
 					WHERE mail = '$_SESSION[tutor]'") or die(mysqli_error($connection));
 					$tutor = mysqli_fetch_array($query);
-
+                    $tut1 = $tutor['typeID'];
 					function load_korsetkish(){
-						global $tt;
+						global $tut1;
 						global $connection;
 						$output = '';
-						$sql = "SELECT * FROM korsetkishter WHERE bolimderID IN(2) and typeID=2";
+						$sql = "SELECT * FROM korsetkishter WHERE bolimderID IN(2,7) and typeID=$tut1";
 						$result = mysqli_query($connection,$sql) or die(mysqli_error($connection));
 						
 						while($row = mysqli_fetch_array($result)){
