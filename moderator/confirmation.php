@@ -5145,6 +5145,7 @@ if (isset($_POST["confirmed"])) {
         );
         http_response_code(200);
     } elseif ($status == 6) {
+        /*еңбекті дұрыстау статусы*/
         ($sql = mysqli_query(
             $connection,
             "UPDATE engbekter SET `ball` = '0', kod_stat = '6', kod_kayt_sebeb = '$kaytaru_sebebi', kayt_sebeb = '$resolution' WHERE `engbekID` = '$engbek_id'"
